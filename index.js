@@ -26,7 +26,7 @@ exports.md5 = hasher('md5');
 exports.sha1 = hasher('sha1');
 
 // 8或16位随机字符串
-exports.ss = function(length){
+exports.rnds = function(length){
     length = length ? length*2 : 16;
     return Math.random().toString(length).substring(2);
 }
@@ -39,3 +39,5 @@ exports.between = function(min, max){
 exports.time = function(){
     var tm = new Date;
 }
+
+exports.is = require('./lib/is.js');
