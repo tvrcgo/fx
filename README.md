@@ -13,6 +13,7 @@ npm i tvrcgo/fx
 - `rnds` 8或16位字符串
 - `between` 指定范围随机数字
 - `time` 时间戳
+- `parse` JSON字符串转对象
 
 #### is
 - `is.array` 是否为数组

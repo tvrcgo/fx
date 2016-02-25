@@ -7,7 +7,17 @@ exports.mix = function(){
     var args = Array.prototype.slice.call(arguments);
     var base = args[0] || {};
     for (var i=1; i<args.length; i++) {
-        Object.assign(base, args[i]);
+        if (Object.assign) {
+            Object.assign(base, args[i]);
+        }
+        else {
+            var tar = args[i] || {};
+            for(var k in tar) {
+                if (tar.hasOwnProperty(k)) {
+                    base[k] = tar[k];
+                }
+            }
+        }
     }
     return base;
 }
@@ -31,13 +41,33 @@ exports.rnds = function(length){
     return Math.random().toString(length).substring(2);
 }
 
-// 一定范围内数字
+// 指定范围的随机数字
 exports.between = function(min, max){
     return Math.round( Math.random()*(max - min) + min );
 }
 
-exports.time = function(){
+// 当前时间
+exports.time = function(format){
     var tm = new Date;
+
+}
+
+// 解析JSON
+exports.parse = function(body){
+    if (body && type body === 'object') {
+        return body;
+    }
+    var obj = {};
+    try {
+        obj = JSON.parse(body);
+    } catch (e) {
+        // console.error(e);
+    }
+    // fix body == '""'
+    if (typeof obj === 'string') {
+        return {};
+    }
+    return obj;
 }
 
 exports.is = require('./lib/is.js');
